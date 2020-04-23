@@ -14,11 +14,14 @@ import com.chuangyou.sample.bean.Note;
 import com.chuangyou.sample.greendao.DaoSession;
 import com.chuangyou.sample.greendao.NoteDao;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
 import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
+    private QueryBuilder mBuilder;
     private DaoSession mDaoSession;
     private NoteDao mNoteDao;
     private Button add,delete,deleteAll,update,retrieve;
@@ -35,6 +38,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+//        QueryBuilder.LOG_SQL = true;
+//        QueryBuilder.LOG_VALUES = true;
         mDaoSession = App.getDaoSession();
         mNoteDao = mDaoSession.getNoteDao();
         add = findView(R.id.add);
@@ -88,8 +93,9 @@ public class MainActivity extends BaseActivity {
                 break;
             }
             case R.id.delete: {
-                List<Note> notes = mNoteDao.queryBuilder().where(NoteDao.Properties.Text.eq("笔记")).build().list();
-                mNoteDao.deleteInTx(notes);
+                mNoteDao.queryBuilder().where(NoteDao.Properties.Text.eq("笔记")).buildDelete().executeDeleteWithoutDetachingEntities();
+//                List<Note> notes = mNoteDao.queryBuilder().where(NoteDao.Properties.Text.eq("笔记")).build().list();
+//                mNoteDao.deleteInTx(notes);
                 break;
             }
             case R.id.deleteAll: {

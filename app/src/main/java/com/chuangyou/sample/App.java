@@ -8,17 +8,14 @@ import com.chuangyou.sample.greendao.DaoSession;
 
 public class App extends Application {
 
-    private DaoMaster.DevOpenHelper mHelper;
-    private SQLiteDatabase db;
-    private DaoMaster mDaoMaster;
     private static DaoSession mDaoSession;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mHelper = new DaoMaster.DevOpenHelper(this,"notes.db",null);
-        db = mHelper.getWritableDatabase();
-        mDaoMaster = new DaoMaster(db);
+        DaoMaster.DevOpenHelper mHelper = new DaoMaster.DevOpenHelper(this,"notes.db",null);
+        SQLiteDatabase db = mHelper.getWritableDatabase();
+        DaoMaster mDaoMaster = new DaoMaster(db);
         mDaoSession = mDaoMaster.newSession();
     }
 
