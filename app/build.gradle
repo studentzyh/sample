@@ -12,10 +12,20 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    /*productFlavors {
+        qihoo{
+            flavorDimensions("qidoo")
+            applicationId "com.chuangyou.sample.qidoo"
+        }
+        baidu{
+            flavorDimensions("baidu")
+            applicationId "com.chuangyou.sample.baidu"
+        }
+    }
     compileOptions{
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
+    }*/
     signingConfigs {
         config {
             storeFile file(KEY_PATH)
